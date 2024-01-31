@@ -15,6 +15,10 @@ public:
         return health > 0;
     }
 
+    int rollDice() const {
+        return rand() % 20 + 1; // Rolling a 20-sided die
+    }
+
     void takeDamage(int damage) {
         health -= damage;
         if (health < 0) {
@@ -23,7 +27,11 @@ public:
     }
 
     int performAttack() const {
-        return attack + (rand() % 5); // Add a random factor to attack
+        int diceRoll = rollDice();
+        int totalDamage = attack + diceRoll;
+
+        std::cout << name << " rolled a " << diceRoll << ". ";
+        return totalDamage;
     }
 };
 
